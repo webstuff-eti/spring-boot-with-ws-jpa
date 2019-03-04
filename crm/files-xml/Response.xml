@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetCustomerDetailResponse 
+		xmlns="http://webstuff.eti.br"
+		xsi:schemaLocation="http://www.webstuff.eti.br customer-information.xsd"
+	    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<CustomerDetail>
+		<id>1</id>
+		<name>Oliveira</name>
+		<phone>35345237070</phone>
+		<email>oliveira@gmail.com</email>
+	</CustomerDetail>
+</GetCustomerDetailResponse>
+    

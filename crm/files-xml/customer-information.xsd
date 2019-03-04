@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.webstuff.eti.br"
+	xmlns:tns="http://www.webstuff.eti.br" elementFormDefault="qualified">
+
+
+   <xs:element name="GetCustomerDetailRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="integer" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetCustomerDetailResponse">
+
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CustomerDetail"
+					type="tns:CustomerDetail" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetAllCustomerResponse">
+
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CustomerDetail"
+					type="tns:CustomerDetail" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="CustomerDetail">
+		<xs:sequence>
+			<xs:element name="id" type="integer" />
+			<xs:element name="name" type="string" />
+			<xs:element name="phone" type="string" />
+			<xs:element name="email" type="string" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

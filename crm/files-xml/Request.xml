@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetCustomerDetailRequest  xmlns="http://webstuff.eti.br"
+							xsi:schemaLocation="http://www.webstuff.eti.br customer-information.xsd"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<id>123</id>
+	
+</GetCustomerDetailRequest>
