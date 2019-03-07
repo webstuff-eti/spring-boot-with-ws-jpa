@@ -51,56 +51,32 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<!-- tag::xsd[] 
+			<!-- tag::xsd[] -->
+            <!-- www.mojohaus.org -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jaxb2-maven-plugin</artifactId>
-				<version>1.6</version>
+				<version>1.5</version>
 				<executions>
 					<execution>
-					
-						<id>xjc</id>
+						<id>id1</id>
 						<goals>
 							<goal>xjc</goal>
 						</goals>
-						
 						<configuration>
-							<packageName>br.eti.webstuff.soap.crm.generated.jaxb</packageName>
-							
+							<!-- <packageName>${project.basedir}/src/main/java/br/eti/webstuff/soap/crm/generated/jaxb</packageName> -->
+							<schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
+							<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+							<clearOutputDir>false</clearOutputDir>
+					        <!-- <schemaFiles>customer-information.xsd</schemaFiles> -->
+							<!-- <schemaFiles>countries.xsd</schemaFiles> -->
 						</configuration>
-						
 					</execution>
 				</executions>
 			</plugin>
-			end::xsd[] -->
-			
-			
-			<plugin>
-  <groupId>org.codehaus.mojo</groupId>
-  <artifactId>jaxb2-maven-plugin</artifactId>
-  <version>1.5</version>
-  <executions>
-    <execution>
-      <id>id1</id>
-      <goals>
-    <goal>xjc</goal>
-      </goals>
-      <configuration>
-      <!-- <outputDirectory>${project.basedir}/target/generated-sources/jaxb</outputDirectory> -->
-       				<outputDirectory>${project.basedir}/src/main/java/br/eti/webstuff/soap/crm/generated/jaxb/</outputDirectory>
-                    <clearOutputDir>false</clearOutputDir>
-                    <!--  
-                    <packageName>${project.basedir}/src/main/java/br/eti/webstuff/soap/crm/generated/jaxb</packageName> 
-                    -->
-                    <schemaDirectory>${project.basedir}/src/main/java/br/eti/webstuff/soap/crm/file/xsd</schemaDirectory>
-                    <schemaFiles>customer-information.xsd</schemaFiles>
-                    
-      </configuration>
-    </execution>
-  </executions>
-</plugin>
-			
-			
+			<!-- end::xsd[] -->
+
+
 		</plugins>
 	</build>
 
