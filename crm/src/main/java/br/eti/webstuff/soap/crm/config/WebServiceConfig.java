@@ -34,7 +34,8 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     	return new SimpleXsdSchema(new ClassPathResource("customer-information.xsd"));
     }
 	
-	@Bean
+	/* Definição da URI: http://localhost:8180/ws/customers.wsdl */
+	@Bean(name="customers")
 	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema customerSchema) {
 		
 		DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
