@@ -18,6 +18,7 @@ import br.eti.webstuff.soap.crm.generated.jaxb.customer.GetAllCustomerDetailResp
 import br.eti.webstuff.soap.crm.generated.jaxb.customer.GetCustomerDetailRequest;
 import br.eti.webstuff.soap.crm.generated.jaxb.customer.GetCustomerDetailResponse;
 import br.eti.webstuff.soap.crm.service.CustomerDetailService;
+import br.eti.webstuff.soap.crm.valids.CustomerValid;
 
 @Endpoint
 public class CustomerDetailEnpoint {
@@ -35,9 +36,8 @@ public class CustomerDetailEnpoint {
 		
 		CustomerBean customer = service.findById(request.getId());
 		
-		if(customer == null) {
-			throw new Exception("Invalid Customer ID: " + request.getId());
-		}
+		CustomerValid.validResponse(customer, request.getId());
+		
 		return converter.converterCustomerBeanToGetCustomerDetailResponse(customer);
 	}
 	
@@ -54,18 +54,22 @@ public class CustomerDetailEnpoint {
 	
 	@PayloadRoot(namespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer", localPart="DeleteCustomerRequest")
 	@ResponsePayload
-	public DeleteCustomerResponse processaDeleteCustomerRequest(@RequestPayload DeleteCustomerRequest request) throws Exception {
+	public DeleteCustomerResponse processaDeleteCustomerRequest(@RequestPayload DeleteCustomerRequest request) throws Exception  {
 		
 		DeleteCustomerResponse response = new DeleteCustomerResponse();
 		
 		StatusCustomer statusCustomer = service.deleteById(request.getId());
 		
-		response.setStatus(converter.converterStatusSOAPToStatusCustomer(statusCustomer));
+		CustomerValid.validSuccess(statusCustomer, request.getId());
 		
-		if(response == null) {
-			throw new Exception("Invalid Customer ID: " + request.getId());
-		}
+		response.setStatus(converter.converterStatusSOAPToStatusCustomer(statusCustomer));
+	
+		
+
 		return response;
 	}
+	
+	
+	
 
 }
