@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="CustomerDetail" type="{http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer}CustomerDetail"/>
+ *         &lt;element name="status" type="{http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer}Status"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "customerDetail"
+    "status"
 })
-@XmlRootElement(name = "GetCustomerDetailResponse")
-public class GetCustomerDetailResponse {
+@XmlRootElement(name = "DeleteCustomerResponse")
+public class DeleteCustomerResponse {
 
-    @XmlElement(name = "CustomerDetail", required = true)
-    protected CustomerDetail customerDetail;
+    @XmlElement(required = true)
+    protected Status status;
 
     /**
-     * Gets the value of the customerDetail property.
+     * Gets the value of the status property.
      * 
      * @return
      *     possible object is
-     *     {@link CustomerDetail }
+     *     {@link Status }
      *     
      */
-    public CustomerDetail getCustomerDetail() {
-        return customerDetail;
+    public Status getStatus() {
+        return status;
     }
 
     /**
-     * Sets the value of the customerDetail property.
+     * Sets the value of the status property.
      * 
      * @param value
      *     allowed object is
-     *     {@link CustomerDetail }
+     *     {@link Status }
      *     
      */
-    public void setCustomerDetail(CustomerDetail value) {
-        this.customerDetail = value;
+    public void setStatus(Status value) {
+        this.status = value;
     }
 
 }

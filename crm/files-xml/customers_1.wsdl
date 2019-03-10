@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="GetCustomerDetailRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomerDetailResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="CustomerDetail" type="tns:CustomerDetail"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--Nova consulta-->
+      <xs:element name="GetAllCustomerDetailRequest">
+        <xs:complexType/>
+      </xs:element>
+      <xs:element name="GetAllCustomerDetailResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="CustomerDetail" type="tns:CustomerDetail"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--Nova operação - deletar um cliente por ID-->
+      <xs:element name="DeleteCustomerRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteCustomerResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="status" type="tns:Status"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:simpleType name="Status">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="SUCCESS"/>
+          <xs:enumeration value="FAILURE"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="CustomerDetail">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element name="name" type="xs:string"/>
+          <xs:element name="phone" type="xs:string"/>
+          <xs:element name="email" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCustomerDetailRequest">
+    <wsdl:part element="tns:GetCustomerDetailRequest" name="GetCustomerDetailRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetAllCustomerDetailRequest">
+    <wsdl:part element="tns:GetAllCustomerDetailRequest" name="GetAllCustomerDetailRequest"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomerRequest">
+    <wsdl:part element="tns:DeleteCustomerRequest" name="DeleteCustomerRequest"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomerResponse">
+    <wsdl:part element="tns:DeleteCustomerResponse" name="DeleteCustomerResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetCustomerDetailResponse">
+    <wsdl:part element="tns:GetCustomerDetailResponse" name="GetCustomerDetailResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetAllCustomerDetailResponse">
+    <wsdl:part element="tns:GetAllCustomerDetailResponse" name="GetAllCustomerDetailResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="CustomerPort">
+    <wsdl:operation name="GetCustomerDetail">
+      <wsdl:input message="tns:GetCustomerDetailRequest" name="GetCustomerDetailRequest"/>
+      <wsdl:output message="tns:GetCustomerDetailResponse" name="GetCustomerDetailResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCustomerDetail">
+      <wsdl:input message="tns:GetAllCustomerDetailRequest" name="GetAllCustomerDetailRequest"/>
+      <wsdl:output message="tns:GetAllCustomerDetailResponse" name="GetAllCustomerDetailResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomer">
+      <wsdl:input message="tns:DeleteCustomerRequest" name="DeleteCustomerRequest"/>
+      <wsdl:output message="tns:DeleteCustomerResponse" name="DeleteCustomerResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomerPortSoap11" type="tns:CustomerPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetCustomerDetail">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetCustomerDetailRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCustomerDetailResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCustomerDetail">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllCustomerDetailRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllCustomerDetailResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomer">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="DeleteCustomerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DeleteCustomerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CustomerPortService">
+    <wsdl:port binding="tns:CustomerPortSoap11" name="CustomerPortSoap11">
+      <soap:address location="http://localhost:8180/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

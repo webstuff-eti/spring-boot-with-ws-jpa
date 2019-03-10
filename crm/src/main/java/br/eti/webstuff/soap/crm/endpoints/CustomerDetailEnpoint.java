@@ -1,32 +1,70 @@
 package br.eti.webstuff.soap.crm.endpoints;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import br.eti.webstuff.soap.crm.generated.jaxb.customer.CustomerDetail;
+import br.eti.webstuff.soap.crm.bean.CustomerBean;
+import br.eti.webstuff.soap.crm.converter.CustomerDatailConverter;
+import br.eti.webstuff.soap.crm.enumeration.StatusCustomer;
+import br.eti.webstuff.soap.crm.generated.jaxb.customer.DeleteCustomerRequest;
+import br.eti.webstuff.soap.crm.generated.jaxb.customer.DeleteCustomerResponse;
+import br.eti.webstuff.soap.crm.generated.jaxb.customer.GetAllCustomerDetailRequest;
+import br.eti.webstuff.soap.crm.generated.jaxb.customer.GetAllCustomerDetailResponse;
 import br.eti.webstuff.soap.crm.generated.jaxb.customer.GetCustomerDetailRequest;
 import br.eti.webstuff.soap.crm.generated.jaxb.customer.GetCustomerDetailResponse;
+import br.eti.webstuff.soap.crm.service.CustomerDetailService;
 
 @Endpoint
 public class CustomerDetailEnpoint {
 	
+	@Autowired
+	private CustomerDetailService service;
+	
+	@Autowired
+	private CustomerDatailConverter converter;
+	
+	
 	@PayloadRoot(namespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer", localPart="GetCustomerDetailRequest")
 	@ResponsePayload
-	public GetCustomerDetailResponse processaCustomerDetailRequest(@RequestPayload GetCustomerDetailRequest request) {
+	public GetCustomerDetailResponse processaCustomerDetailRequest(@RequestPayload GetCustomerDetailRequest request) throws Exception {
 		
-		GetCustomerDetailResponse response = new GetCustomerDetailResponse();
+		CustomerBean customer = service.findById(request.getId());
 		
-		CustomerDetail  customerDetail = new CustomerDetail();
+		if(customer == null) {
+			throw new Exception("Invalid Customer ID: " + request.getId());
+		}
+		return converter.converterCustomerBeanToGetCustomerDetailResponse(customer);
+	}
+	
+	
+	@PayloadRoot(namespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer", localPart="GetAllCustomerDetailRequest")
+	@ResponsePayload
+	public GetAllCustomerDetailResponse processaGetAllCustomerDetailRequest(@RequestPayload GetAllCustomerDetailRequest request) {
 		
-		customerDetail.setId(1);
-		customerDetail.setName("Tiago");
-		customerDetail.setEmail("tiago@gmail.com");
-		customerDetail.setPhone("11 97070-7070");
+		List<CustomerBean> customerBeans = service.findAll();
 		
-		response.setCustomerDetail(customerDetail);
+		return converter.converterListOfCustomerBeanToListOfCustomerDetailResponse(customerBeans);
+	}
+	
+	
+	@PayloadRoot(namespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer", localPart="DeleteCustomerRequest")
+	@ResponsePayload
+	public DeleteCustomerResponse processaDeleteCustomerRequest(@RequestPayload DeleteCustomerRequest request) throws Exception {
 		
+		DeleteCustomerResponse response = new DeleteCustomerResponse();
+		
+		StatusCustomer statusCustomer = service.deleteById(request.getId());
+		
+		response.setStatus(converter.converterStatusSOAPToStatusCustomer(statusCustomer));
+		
+		if(response == null) {
+			throw new Exception("Invalid Customer ID: " + request.getId());
+		}
 		return response;
 	}
 
