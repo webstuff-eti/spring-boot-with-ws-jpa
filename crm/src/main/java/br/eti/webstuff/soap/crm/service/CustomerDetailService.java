@@ -15,6 +15,7 @@ public class CustomerDetailService {
 	
 	private static List<CustomerBean> customersBeans = new ArrayList<>();
 	
+	//FIXME: Excluir código abaixo e implementar busca em banco de dados
 	static {
 		
 		CustomerBean cristina = new CustomerBean(1, "Cristina", "99999", "ristina@gmail.com");

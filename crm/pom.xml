@@ -56,7 +56,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<!-- tag::xsd[] -->
-            <!-- www.mojohaus.org -->
+			<!-- www.mojohaus.org -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jaxb2-maven-plugin</artifactId>
@@ -72,7 +72,7 @@
 							<schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
 							<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
 							<clearOutputDir>false</clearOutputDir>
-					        <!-- <schemaFiles>customer-information.xsd</schemaFiles> -->
+							<!-- <schemaFiles>customer-information.xsd</schemaFiles> -->
 							<!-- <schemaFiles>countries.xsd</schemaFiles> -->
 						</configuration>
 					</execution>

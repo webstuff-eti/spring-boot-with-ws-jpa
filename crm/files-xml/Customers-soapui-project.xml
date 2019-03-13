@@ -129,7 +129,7 @@
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <cus:GetCustomerDetailRequest>\r
-         <cus:id>123</cus:id>\r
+         <cus:id>3</cus:id>\r
       </cus:GetCustomerDetailRequest>\r
    </soapenv:Body>\r
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer/CustomerPort/GetCustomerDetailRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="7d3ee56f-2cf5-4439-b131-763ec386fc17" isOneWay="false" action="" name="GetAllCustomerDetail" bindingOperationName="GetAllCustomerDetail" type="Request-Response" outputName="GetAllCustomerDetailResponse" inputName="GetAllCustomerDetailRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1b29cae0-1bf9-42fd-b9e4-da1a9dd34cf4" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8180/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cus="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer">\r
@@ -141,7 +141,7 @@
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <cus:DeleteCustomerRequest>\r
-         <cus:id>3</cus:id>\r
+         <cus:id>12</cus:id>\r
       </cus:DeleteCustomerRequest>\r
    </soapenv:Body>\r
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer/CustomerPort/DeleteCustomerRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
