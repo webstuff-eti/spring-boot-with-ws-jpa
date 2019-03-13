@@ -17,3 +17,16 @@ Iremos implementar acesso ao banco de dados (Em memória) mais a frente.
 
 
 
+# Criando Cliente WS
+
+
+Passo 01: -->   https://start.spring.io/   (crie seu projeto) : cliente-crm
+
+Passo 02: Suba seu serviço WS
+
+Passo 03: entre no diretório do projeto e através do prompt (no caso de ser S.O Windowns) e insira o comando (wsimport -s src/main/java -p br.eti.webstuff.generated.stubs http://localhost:8180/ws/customers.wsdl) para que seja gerado as classes Stubs de maneira automática:
+
+D:\PROJETO-WS\spring-boot-with-ws-jpa\cliente-crm>wsimport -s src/main/java -p br.eti.webstuff.generated.stubs http://localhost:8180/ws/customers.wsdl
+
+
+
