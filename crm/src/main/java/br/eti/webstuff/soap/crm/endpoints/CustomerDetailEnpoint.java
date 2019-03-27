@@ -35,11 +35,8 @@ public class CustomerDetailEnpoint {
 	@PayloadRoot(namespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer", localPart="GetCustomerDetailRequest")
 	@ResponsePayload
 	public GetCustomerDetailResponse processaCustomerDetailRequest(@RequestPayload GetCustomerDetailRequest request) throws Exception {
-		
 		CustomerBean customer = service.findById(request.getId());
-		
 		CustomerValid.validResponse(customer, request.getId());
-		
 		return converter.converterCustomerBeanToGetCustomerDetailResponse(customer);
 	}
 	
@@ -47,9 +44,7 @@ public class CustomerDetailEnpoint {
 	@PayloadRoot(namespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer", localPart="GetAllCustomerDetailRequest")
 	@ResponsePayload
 	public GetAllCustomerDetailResponse processaGetAllCustomerDetailRequest(@RequestPayload GetAllCustomerDetailRequest request) {
-		
 		List<CustomerBean> customerBeans = service.findAll();
-		
 		return converter.converterListOfCustomerBeanToListOfCustomerDetailResponse(customerBeans);
 	}
 	
@@ -57,15 +52,10 @@ public class CustomerDetailEnpoint {
 	@PayloadRoot(namespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer", localPart="DeleteCustomerRequest")
 	@ResponsePayload
 	public DeleteCustomerResponse processaDeleteCustomerRequest(@RequestPayload DeleteCustomerRequest request) throws Exception  {
-		
 		DeleteCustomerResponse response = new DeleteCustomerResponse();
-		
 		StatusCustomer statusCustomer = service.deleteById(request.getId());
-		
 		CustomerValid.validSuccess(statusCustomer, request.getId());
-		
 		response.setStatus(converter.converterStatusSOAPToStatusCustomer(statusCustomer));
-
 		return response;
 	}
 	
@@ -73,19 +63,11 @@ public class CustomerDetailEnpoint {
 	@PayloadRoot(namespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer", localPart="InsertCustomerDetailRequest")
 	@ResponsePayload
 	public InsertCustomerDetailResponse processaInsertCustomerDetailRequest(@RequestPayload InsertCustomerDetailRequest request) {
-		
 		CustomerBean customerBean = converter.converterInsertCustomerDetailRequestToInsertCustomerDetailResponse(request);
-		
 		//CustomerValid.validIfNameAndEmailOfCustomerIsNull(customerBean);
-		
 		InsertCustomerDetailResponse response = new InsertCustomerDetailResponse();
-		
 		response.setStatus(converter.converterStatusSOAPToStatusCustomer(service.insertClient(customerBean)));
-		
 		return response;
 	}
 	
-	
-	
-
 }

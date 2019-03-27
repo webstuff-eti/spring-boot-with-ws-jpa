@@ -19,7 +19,6 @@ public class CustomerDetailService {
 
 
 	public CustomerBean findById(Integer id) {
-
 		Optional<CustomerBean> customerOptional = customerRepository.findById(id);
 		if(customerOptional.isPresent()) {
 			return customerOptional.get();
@@ -32,7 +31,6 @@ public class CustomerDetailService {
 	}
 
 	public StatusCustomer deleteById(Integer id) {
-		
 		try {
 			customerRepository.deleteById(id);
 			return StatusCustomer.SUCCESS;
