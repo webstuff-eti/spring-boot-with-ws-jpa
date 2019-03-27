@@ -1,6 +1,6 @@
 package br.eti.webstuff.soap.crm.bean;
 
-import javax.annotation.Generated;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +15,10 @@ public class CustomerBean {
 	private String name;
 	private String phone;
 	private String email;
+	
+	public CustomerBean() {
+		super();
+	}
 
 	public CustomerBean(int id, String name, String phone, String email) {
 		super();

@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="5ead4af9-eb24-4a18-b9ac-97cf1ad8adce" activeEnvironment="Default" name="Customers" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="975e552e-c958-43ac-bc7a-de49f9a80bb7" wsaVersion="NONE" name="CustomerPortSoap11" type="wsdl" bindingName="{http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer}CustomerPortSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8180/ws/customers.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8180/ws/customers.wsdl"><con:part><con:url>http://localhost:8180/ws/customers.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer">
+<con:soapui-project id="57b5a1a3-f1e9-453f-96c7-226bd40e59cc" activeEnvironment="Default" name="customers" resourceRoot="" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="c5cf8882-536f-4fad-922d-69e634f601e2" wsaVersion="NONE" name="CustomerPortSoap11" type="wsdl" bindingName="{http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer}CustomerPortSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8180/ws/customers.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8180/ws/customers.wsdl"><con:part><con:url>http://localhost:8180/ws/customers.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer">
   <wsdl:types>
     <xs:schema elementFormDefault="qualified" targetNamespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <!--Nova operação: inserindo dados-->
+      <xs:element name="InsertCustomerDetailRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="CustomerDetail" type="tns:CustomerDetail"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="InsertCustomerDetailResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="status" type="tns:Status"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="GetCustomerDetailRequest">
         <xs:complexType>
           <xs:sequence>
@@ -58,8 +73,14 @@
       </xs:complexType>
     </xs:schema>
   </wsdl:types>
+  <wsdl:message name="InsertCustomerDetailResponse">
+    <wsdl:part element="tns:InsertCustomerDetailResponse" name="InsertCustomerDetailResponse"></wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetCustomerDetailRequest">
     <wsdl:part element="tns:GetCustomerDetailRequest" name="GetCustomerDetailRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InsertCustomerDetailRequest">
+    <wsdl:part element="tns:InsertCustomerDetailRequest" name="InsertCustomerDetailRequest"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="GetAllCustomerDetailRequest">
     <wsdl:part element="tns:GetAllCustomerDetailRequest" name="GetAllCustomerDetailRequest"></wsdl:part>
@@ -77,6 +98,10 @@
     <wsdl:part element="tns:GetAllCustomerDetailResponse" name="GetAllCustomerDetailResponse"></wsdl:part>
   </wsdl:message>
   <wsdl:portType name="CustomerPort">
+    <wsdl:operation name="InsertCustomerDetail">
+      <wsdl:input message="tns:InsertCustomerDetailRequest" name="InsertCustomerDetailRequest"></wsdl:input>
+      <wsdl:output message="tns:InsertCustomerDetailResponse" name="InsertCustomerDetailResponse"></wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetCustomerDetail">
       <wsdl:input message="tns:GetCustomerDetailRequest" name="GetCustomerDetailRequest"></wsdl:input>
       <wsdl:output message="tns:GetCustomerDetailResponse" name="GetCustomerDetailResponse"></wsdl:output>
@@ -92,6 +117,15 @@
   </wsdl:portType>
   <wsdl:binding name="CustomerPortSoap11" type="tns:CustomerPort">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="InsertCustomerDetail">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="InsertCustomerDetailRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="InsertCustomerDetailResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetCustomerDetail">
       <soap:operation soapAction=""/>
       <wsdl:input name="GetCustomerDetailRequest">
@@ -125,23 +159,73 @@
       <soap:address location="http://localhost:8180/ws"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8180/ws</con:endpoint></con:endpoints><con:operation id="f43168f5-951d-4ff9-a6ce-c894c5854c49" isOneWay="false" action="" name="GetCustomerDetail" bindingOperationName="GetCustomerDetail" type="Request-Response" outputName="GetCustomerDetailResponse" inputName="GetCustomerDetailRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="241b4d47-7f87-40cc-af2f-debec22f49f4" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8180/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cus="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer">\r
-   <soapenv:Header/>\r
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8180/ws</con:endpoint></con:endpoints><con:operation id="6829b85d-c2f9-4e7c-a404-ededc417d5d7" isOneWay="false" action="" name="DeleteCustomer" bindingOperationName="DeleteCustomer" type="Request-Response" outputName="DeleteCustomerResponse" inputName="DeleteCustomerRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ac2a179c-c3c0-462f-98c6-c0cd8c07981b" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8180/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cus="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer">\r
+   <soapenv:Header>
+      <wsse:Security
+           xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+           mustUnderstand="1">
+           <wsse:UsernameToken>
+              <wsse:Username>admin</wsse:Username>
+              <wsse:Password>admin</wsse:Password>
+           </wsse:UsernameToken>
+      </wsse:Security>
+   </soapenv:Header>
+
    <soapenv:Body>\r
-      <cus:GetCustomerDetailRequest>\r
-         <cus:id>3</cus:id>\r
-      </cus:GetCustomerDetailRequest>\r
+      <cus:DeleteCustomerRequest>\r
+         <cus:id>5</cus:id>\r
+      </cus:DeleteCustomerRequest>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer/CustomerPort/GetCustomerDetailRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="7d3ee56f-2cf5-4439-b131-763ec386fc17" isOneWay="false" action="" name="GetAllCustomerDetail" bindingOperationName="GetAllCustomerDetail" type="Request-Response" outputName="GetAllCustomerDetailResponse" inputName="GetAllCustomerDetailRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1b29cae0-1bf9-42fd-b9e4-da1a9dd34cf4" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8180/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cus="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer">\r
-   <soapenv:Header/>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer/CustomerPort/DeleteCustomerRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="f03c233f-315e-49c3-a874-f2b131d53de9" isOneWay="false" action="" name="GetAllCustomerDetail" bindingOperationName="GetAllCustomerDetail" type="Request-Response" outputName="GetAllCustomerDetailResponse" inputName="GetAllCustomerDetailRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8bfb011a-c837-4439-adae-a0df71e22c11" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8180/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cus="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer">\r
+    <soapenv:Header>
+      <wsse:Security
+           xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+           mustUnderstand="1">
+           <wsse:UsernameToken>
+              <wsse:Username>admin</wsse:Username>
+              <wsse:Password>admin</wsse:Password>
+           </wsse:UsernameToken>
+      </wsse:Security>
+   </soapenv:Header>
    <soapenv:Body>\r
       <cus:GetAllCustomerDetailRequest/>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer/CustomerPort/GetAllCustomerDetailRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="5fb99628-dde6-4481-bf8a-32924ee4a6b7" isOneWay="false" action="" name="DeleteCustomer" bindingOperationName="DeleteCustomer" type="Request-Response" outputName="DeleteCustomerResponse" inputName="DeleteCustomerRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a55e0fec-835a-4c42-bb25-6ecf3f4d3f90" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8180/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cus="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer">\r
-   <soapenv:Header/>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer/CustomerPort/GetAllCustomerDetailRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="4e30b983-19a1-4bda-8c6f-44d9d7c39e93" isOneWay="false" action="" name="GetCustomerDetail" bindingOperationName="GetCustomerDetail" type="Request-Response" outputName="GetCustomerDetailResponse" inputName="GetCustomerDetailRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2b079bc1-a7d3-4dd6-bf8d-a2ba2ec704c4" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8180/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cus="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer">\r
+    <soapenv:Header>
+      <wsse:Security
+           xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+           mustUnderstand="1">
+           <wsse:UsernameToken>
+              <wsse:Username>admin</wsse:Username>
+              <wsse:Password>admin</wsse:Password>
+           </wsse:UsernameToken>
+      </wsse:Security>
+   </soapenv:Header>
    <soapenv:Body>\r
-      <cus:DeleteCustomerRequest>\r
-         <cus:id>12</cus:id>\r
-      </cus:DeleteCustomerRequest>\r
+      <cus:GetCustomerDetailRequest>\r
+         <cus:id>1</cus:id>\r
+      </cus:GetCustomerDetailRequest>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer/CustomerPort/DeleteCustomerRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer/CustomerPort/GetCustomerDetailRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="d4494517-c58e-40a1-95b6-39a0caa25a25" isOneWay="false" action="" name="InsertCustomerDetail" bindingOperationName="InsertCustomerDetail" type="Request-Response" outputName="InsertCustomerDetailResponse" inputName="InsertCustomerDetailRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="93ea05c8-b13b-4706-b3c9-f340512325e1" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8180/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"    
+                  xmlns:cus="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer">\r
+   <soapenv:Header>
+      <wsse:Security
+           xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+           mustUnderstand="1">
+           <wsse:UsernameToken>
+              <wsse:Username>admin</wsse:Username>
+              <wsse:Password>admin</wsse:Password>
+           </wsse:UsernameToken>
+      </wsse:Security>
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+   
+      <cus:InsertCustomerDetailRequest>\r
+         <cus:CustomerDetail>\r
+            <cus:name>Tiago Tibães</cus:name>\r
+            <cus:phone>(11) 98735-5547</cus:phone>\r
+            <cus:email>tibaestiago@gmail.com</cus:email>\r
+         </cus:CustomerDetail>\r
+      </cus:InsertCustomerDetailRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer/CustomerPort/InsertCustomerDetailRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
