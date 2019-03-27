@@ -29,7 +29,7 @@ public class CustomerDatailService {
 		CustomerDatailDTO customerDTO = null;
 
 		// TODO: Preparando para autenticação quando for implemementada
-		//this.customerPortService.setHandlerResolver(headerHandlerResolver);
+		customerPortService.setHandlerResolver(headerHandlerResolver);
 		
 	
 		//TODO: ESTAMOS SEM SEGURANÇA/ AUTORIZAÇÃO E AUTENTICAÇÃO
