@@ -1,43 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="http://www.webstuff.eti.br"
-	xmlns:tns="http://www.webstuff.eti.br" elementFormDefault="qualified">
+	targetNamespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer"
+	xmlns:tns="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer" elementFormDefault="qualified">
+
+   <!-- Nova operação: inserindo dados -->
+   <xs:element name="InsertCustomerDetailRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CustomerDetail" type="tns:CustomerDetail" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InsertCustomerDetailResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="status" type="tns:Status" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 
 
    <xs:element name="GetCustomerDetailRequest">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="id" type="integer" />
+				<xs:element name="id" type="xs:int" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-
 	<xs:element name="GetCustomerDetailResponse">
-
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="CustomerDetail"
-					type="tns:CustomerDetail" />
+				<xs:element name="CustomerDetail" type="tns:CustomerDetail" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-
-	<xs:element name="GetAllCustomerResponse">
-
+	
+	<!-- Nova consulta -->
+	<xs:element name="GetAllCustomerDetailRequest">
+		<xs:complexType>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="GetAllCustomerDetailResponse">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="CustomerDetail"
-					type="tns:CustomerDetail" />
+				<xs:element name="CustomerDetail" type="tns:CustomerDetail" maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	
+	<!-- Nova operação - deletar um cliente por ID -->
+	<xs:element name="DeleteCustomerRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:int" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DeleteCustomerResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="status" type="tns:Status" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:simpleType name="Status">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SUCCESS" />
+			<xs:enumeration value="FAILURE" />
+		</xs:restriction>
+	</xs:simpleType>
 
 	<xs:complexType name="CustomerDetail">
 		<xs:sequence>
-			<xs:element name="id" type="integer" />
-			<xs:element name="name" type="string" />
-			<xs:element name="phone" type="string" />
-			<xs:element name="email" type="string" />
+			<xs:element name="id" type="xs:int" />
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="phone" type="xs:string" />
+			<xs:element name="email" type="xs:string" />
 		</xs:sequence>
 	</xs:complexType>
 

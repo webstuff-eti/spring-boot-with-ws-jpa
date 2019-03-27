@@ -9,6 +9,7 @@ import br.eti.webstuff.soap.crm.enumeration.StatusCustomer;
 import br.eti.webstuff.soap.crm.generated.jaxb.customer.CustomerDetail;
 import br.eti.webstuff.soap.crm.generated.jaxb.customer.GetAllCustomerDetailResponse;
 import br.eti.webstuff.soap.crm.generated.jaxb.customer.GetCustomerDetailResponse;
+import br.eti.webstuff.soap.crm.generated.jaxb.customer.InsertCustomerDetailRequest;
 import br.eti.webstuff.soap.crm.generated.jaxb.customer.Status;
 
 
@@ -57,6 +58,15 @@ public class CustomerDatailConverter {
 		}
 		
 		return Status.SUCCESS;
+	}
+	
+	
+	public CustomerBean converterInsertCustomerDetailRequestToInsertCustomerDetailResponse(
+			InsertCustomerDetailRequest request) {
+
+		return new CustomerBean(request.getCustomerDetail().getId(),
+				request.getCustomerDetail().getName(), request.getCustomerDetail().getPhone(),
+				request.getCustomerDetail().getEmail());
 	}
 
 }

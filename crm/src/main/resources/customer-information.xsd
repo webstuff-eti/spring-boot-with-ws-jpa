@@ -3,6 +3,22 @@
 	targetNamespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer"
 	xmlns:tns="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer" elementFormDefault="qualified">
 
+   <!-- Nova operação: inserindo dados -->
+   <xs:element name="InsertCustomerDetailRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CustomerDetail" type="tns:CustomerDetail" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InsertCustomerDetailResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="status" type="tns:Status" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
 
    <xs:element name="GetCustomerDetailRequest">
 		<xs:complexType>

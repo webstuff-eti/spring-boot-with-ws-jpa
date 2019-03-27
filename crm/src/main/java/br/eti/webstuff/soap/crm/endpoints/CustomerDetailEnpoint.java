@@ -17,6 +17,8 @@ import br.eti.webstuff.soap.crm.generated.jaxb.customer.GetAllCustomerDetailRequ
 import br.eti.webstuff.soap.crm.generated.jaxb.customer.GetAllCustomerDetailResponse;
 import br.eti.webstuff.soap.crm.generated.jaxb.customer.GetCustomerDetailRequest;
 import br.eti.webstuff.soap.crm.generated.jaxb.customer.GetCustomerDetailResponse;
+import br.eti.webstuff.soap.crm.generated.jaxb.customer.InsertCustomerDetailRequest;
+import br.eti.webstuff.soap.crm.generated.jaxb.customer.InsertCustomerDetailResponse;
 import br.eti.webstuff.soap.crm.service.CustomerDetailService;
 import br.eti.webstuff.soap.crm.valids.CustomerValid;
 
@@ -63,9 +65,23 @@ public class CustomerDetailEnpoint {
 		CustomerValid.validSuccess(statusCustomer, request.getId());
 		
 		response.setStatus(converter.converterStatusSOAPToStatusCustomer(statusCustomer));
-	
-		
 
+		return response;
+	}
+	
+	
+	@PayloadRoot(namespace="http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer", localPart="InsertCustomerDetailRequest")
+	@ResponsePayload
+	public InsertCustomerDetailResponse processaInsertCustomerDetailRequest(@RequestPayload InsertCustomerDetailRequest request) {
+		
+		CustomerBean customerBean = converter.converterInsertCustomerDetailRequestToInsertCustomerDetailResponse(request);
+		
+		//CustomerValid.validIfNameAndEmailOfCustomerIsNull(customerBean);
+		
+		InsertCustomerDetailResponse response = new InsertCustomerDetailResponse();
+		
+		response.setStatus(converter.converterStatusSOAPToStatusCustomer(service.insertClient(customerBean)));
+		
 		return response;
 	}
 	

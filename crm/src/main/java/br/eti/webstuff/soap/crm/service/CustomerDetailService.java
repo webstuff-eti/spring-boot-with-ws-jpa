@@ -1,66 +1,53 @@
 package br.eti.webstuff.soap.crm.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.eti.webstuff.soap.crm.bean.CustomerBean;
 import br.eti.webstuff.soap.crm.enumeration.StatusCustomer;
+import br.eti.webstuff.soap.crm.repository.CustomerDetailRepository;
 
 @Service
 public class CustomerDetailService {
 	
 	
-	private static List<CustomerBean> customersBeans = new ArrayList<>();
-	
-	//FIXME: Excluir código abaixo e implementar busca em banco de dados
-	static {
-		
-		CustomerBean cristina = new CustomerBean(1, "Cristina", "99999", "ristina@gmail.com");
-		customersBeans.add(cristina);
-		
-		CustomerBean nilva = new CustomerBean(2, "Nilva", "88888", "nilva@gmail.com");
-		customersBeans.add(nilva);
-		
-		CustomerBean rogerio = new CustomerBean(3, "Rogério", "77777", "rogerio@gmail.com");
-		customersBeans.add(rogerio);
-		
-		CustomerBean luiz = new CustomerBean(4, "Luiz", "66666", "luiz@gmail.com");
-		customersBeans.add(luiz);
-		
-		CustomerBean aleixe = new CustomerBean(5, "Aleixe", "55555", "aleixe@gmail.com");
-		customersBeans.add(aleixe);
-	}
-	
-	
-	public CustomerBean findById(int id) {
-		
-		Optional<CustomerBean> customerOptinal = customersBeans.stream().filter(c -> c.getId() == id).findAny();
-		
-		if(customerOptinal.isPresent()) {
-			return customerOptinal.get();
+	@Autowired
+	private CustomerDetailRepository  customerRepository;
+
+
+	public CustomerBean findById(Integer id) {
+
+		Optional<CustomerBean> customerOptional = customerRepository.findById(id);
+		if(customerOptional.isPresent()) {
+			return customerOptional.get();
 		}
 		return null;
 	}
-	
-	public List<CustomerBean> findAll(){
-		return customersBeans;
+
+	public List<CustomerBean> findAll() {
+		return customerRepository.findAll();
 	}
-	
-	public StatusCustomer deleteById(int id) {
+
+	public StatusCustomer deleteById(Integer id) {
 		
-		Optional<CustomerBean> customerOptinal = customersBeans.stream().filter(c -> c.getId()  == id).findAny();
-		
-		if(customerOptinal.isPresent()) {
-			
-			customersBeans.remove(customerOptinal.get());
-			
+		try {
+			customerRepository.deleteById(id);
 			return StatusCustomer.SUCCESS;
+		}catch(Exception ex) {
+			return StatusCustomer.FAILURE;
 		}
-		
-		return StatusCustomer.FAILURE;
+	}
+
+	public StatusCustomer insertClient(CustomerBean customer) {
+		try {
+			customerRepository.save(customer);
+			return StatusCustomer.SUCCESS;
+		}catch(Exception ex) {
+			return StatusCustomer.FAILURE;
+		}
 	}
 
 }

@@ -6,7 +6,7 @@
 //
 
 
-package br.eti.webstuff.soap.crm.generated.jaxb.countries;
+package br.eti.webstuff.soap.crm.generated.jaxb.customer;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="country" type="{http://www.webstuff.eti.br/soap/crm/generated/jaxb/countries}country"/>
+ *         &lt;element name="status" type="{http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer}Status"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "country"
+    "status"
 })
-@XmlRootElement(name = "getCountryResponse")
-public class GetCountryResponse {
+@XmlRootElement(name = "InsertCustomerDetailResponse")
+public class InsertCustomerDetailResponse {
 
     @XmlElement(required = true)
-    protected Country country;
+    protected Status status;
 
     /**
-     * Gets the value of the country property.
+     * Gets the value of the status property.
      * 
      * @return
      *     possible object is
-     *     {@link Country }
+     *     {@link Status }
      *     
      */
-    public Country getCountry() {
-        return country;
+    public Status getStatus() {
+        return status;
     }
 
     /**
-     * Sets the value of the country property.
+     * Sets the value of the status property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Country }
+     *     {@link Status }
      *     
      */
-    public void setCountry(Country value) {
-        this.country = value;
+    public void setStatus(Status value) {
+        this.status = value;
     }
 
 }

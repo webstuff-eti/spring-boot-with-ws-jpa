@@ -8,8 +8,6 @@
 
 package br.eti.webstuff.soap.crm.generated.jaxb.customer;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -27,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="CustomerDetail" type="{http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer}CustomerDetail" maxOccurs="unbounded"/>
+ *         &lt;element name="CustomerDetail" type="{http://www.webstuff.eti.br/soap/crm/generated/jaxb/customer}CustomerDetail"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,39 +38,34 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "customerDetail"
 })
-@XmlRootElement(name = "GetAllCustomerDetailResponse")
-public class GetAllCustomerDetailResponse {
+@XmlRootElement(name = "InsertCustomerDetailRequest")
+public class InsertCustomerDetailRequest {
 
     @XmlElement(name = "CustomerDetail", required = true)
-    protected List<CustomerDetail> customerDetail;
+    protected CustomerDetail customerDetail;
 
     /**
      * Gets the value of the customerDetail property.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the customerDetail property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getCustomerDetail().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link CustomerDetail }
-     * 
-     * 
+     * @return
+     *     possible object is
+     *     {@link CustomerDetail }
+     *     
      */
-    public List<CustomerDetail> getCustomerDetail() {
-        if (customerDetail == null) {
-            customerDetail = new ArrayList<CustomerDetail>();
-        }
-        return this.customerDetail;
+    public CustomerDetail getCustomerDetail() {
+        return customerDetail;
+    }
+
+    /**
+     * Sets the value of the customerDetail property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CustomerDetail }
+     *     
+     */
+    public void setCustomerDetail(CustomerDetail value) {
+        this.customerDetail = value;
     }
 
 }
