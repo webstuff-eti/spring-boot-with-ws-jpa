@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.eti.webstuff.clientecrm.CustomerDatailService;
 import br.eti.webstuff.clientecrm.dto.CustomerDatailDTO;
+import br.eti.webstuff.clientecrm.service.CustomerDatailService;
 import lombok.NoArgsConstructor;
 
 @RestController

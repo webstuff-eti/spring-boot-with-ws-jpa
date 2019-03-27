@@ -1,10 +1,10 @@
-package br.eti.webstuff.clientecrm;
+package br.eti.webstuff.clientecrm.build;
 
 import br.eti.webstuff.clientecrm.dto.CustomerDatailDTO;
 import br.eti.webstuff.generated.stubs.GetCustomerDetailResponse;
 
-public class Converters {
-
+public class Converter {
+	
 	public static CustomerDatailDTO converterCustomerDatailResponseToCustomerDatailDTO(
 			GetCustomerDetailResponse customerDetailResponse) {
 

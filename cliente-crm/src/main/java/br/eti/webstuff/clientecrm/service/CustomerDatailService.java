@@ -1,8 +1,9 @@
-package br.eti.webstuff.clientecrm;
+package br.eti.webstuff.clientecrm.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.eti.webstuff.clientecrm.build.Converter;
 import br.eti.webstuff.clientecrm.dto.CustomerDatailDTO;
 import br.eti.webstuff.clientecrm.security.HeaderHandlerResolver;
 import br.eti.webstuff.generated.stubs.CustomerPort;
@@ -41,10 +42,11 @@ public class CustomerDatailService {
 		//TODO: Aplicar validações
 		if (customerDetailResponse != null) {
 			customerDTO = new CustomerDatailDTO();
-			customerDTO = Converters.converterCustomerDatailResponseToCustomerDatailDTO(customerDetailResponse);
+			customerDTO = Converter.converterCustomerDatailResponseToCustomerDatailDTO(customerDetailResponse);
 		}
 		
 		return customerDTO;
 	}
 
 }
+

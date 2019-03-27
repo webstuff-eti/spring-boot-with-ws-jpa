@@ -15,7 +15,6 @@ public class HeaderHandler implements SOAPHandler<SOAPMessageContext> {
 
 	@Override
 	public void close(MessageContext context) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -54,7 +53,6 @@ public class HeaderHandler implements SOAPHandler<SOAPMessageContext> {
 
 	@Override
 	public Set<QName> getHeaders() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
