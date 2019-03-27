@@ -26,20 +26,18 @@ public class CustomerDatailService {
 		
 		CustomerPortService customerPortService = new CustomerPortService();
 		
-		
 		CustomerDatailDTO customerDTO = null;
 
-		// TODO: Preparando para autenticação quando for implemementada
 		customerPortService.setHandlerResolver(headerHandlerResolver);
 		
-	
-		//TODO: ESTAMOS SEM SEGURANÇA/ AUTORIZAÇÃO E AUTENTICAÇÃO
 		CustomerPort port = customerPortService.getCustomerPortSoap11();
 		
 		customerDetailRequest.setId(id);
 		customerDetailResponse = port.getCustomerDetail(customerDetailRequest);
 
 		//TODO: Aplicar validações
+		
+		
 		if (customerDetailResponse != null) {
 			customerDTO = new CustomerDatailDTO();
 			customerDTO = Converter.converterCustomerDatailResponseToCustomerDatailDTO(customerDetailResponse);
